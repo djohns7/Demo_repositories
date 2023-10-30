@@ -7,7 +7,7 @@ spec:
   # Client ID of your GitHub OAuth App
   client_id: f6949feeae5f50166609
   # Client secret of your GitHub OAuth App
-  client_secret: b109607b80ff1846c7d0760ba4b24dd4262950e5
+  client_secret: redacted
   # Connector display name that will be shown on the Web UI login screen
   display: GitHub
   # Callback URL that will be called after successful authentication
