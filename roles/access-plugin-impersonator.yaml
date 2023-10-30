@@ -1,0 +1,12 @@
+kind: role
+version: v5
+metadata:
+  name: access-plugin-impersonator
+spec:
+  allow:
+    impersonate:
+      roles:
+      - access-plugin
+      users:
+      - access-plugin
+

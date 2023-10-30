@@ -1,0 +1,42 @@
+#kind: role
+#version: v5
+#metadata:
+#  name: auto-users
+#spec:
+#  options:
+#    # Allow automatic creation of users.
+#    create_host_user: true
+#  allow:
+#    logins: [ '{{external.logins}}' ]
+#    # List of host groups the created user will be added to. Any that don't already exist are created.
+#    host_groups: [ubuntu, ec2-user]
+#    # List of entries to include in a temporary sudoers file created in /etc/sudoers.d
+#    host_sudoers: [
+#       "ALL=(ALL)	ALL"
+#    ]
+#    node_labels:
+#      'environment': 'prod'
+#
+kind: role
+version: v5
+metadata:
+  name: auto-users
+spec:
+  options:
+    # Allow automatic creation of users.
+    create_host_user: true
+  allow:
+    logins: [ "nginxrestarter" ]
+    # List of host groups the created user will be added to. Any that don't already exist are created.
+    host_groups: [ubuntu, nginx, other]
+    # List of entries to include in a temporary sudoers file created in /etc/sudoers.d
+    host_sudoers: [
+       # This line will allow the `nginxrestarter` user to run
+       # `systemctl restart nginx.service` as
+       # root without requiring a password.
+       # The sudoers entries will be prefixed with `nginxrestarter` in this case.
+       # sudoers file reference documentation: https://www.sudo.ws/docs/man/1.8.17/sudoers.man/
+       "ALL = (root) NOPASSWD: /usr/bin/systemctl restart nginx.service"
+    ]
+    node_labels:
+      '*': '*'

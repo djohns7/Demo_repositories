@@ -1,0 +1,14 @@
+kind: role
+version: v5
+metadata:
+  name: contractor
+spec:
+  allow:
+    request:
+      roles: ['contractor-admin']
+    logins:
+     - root
+     - ubuntu
+     - ec2-user
+    node_labels:
+      'environment': 'dev'

@@ -1,0 +1,16 @@
+kind: role
+version: v5
+metadata:
+  name: okta
+spec:
+  options:
+    max_session_ttl: 24h
+    create_host_user: true
+  allow:
+    logins:
+     - root
+     - ubuntu
+     - ec2-user
+    node_labels:
+      '*': '*'
+

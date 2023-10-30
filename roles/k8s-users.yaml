@@ -1,0 +1,16 @@
+kind: role
+metadata:
+  name: k8s-users
+version: v5
+spec:
+  options:
+    max_session_ttl: 24h
+    create_host_user: true
+  allow:
+    kubernetes_labels:
+      '*': '*'
+    kubernetes_groups:
+    - admin
+    kubernetes_users:
+    - USER
+  deny: {}

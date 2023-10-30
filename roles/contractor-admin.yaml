@@ -1,0 +1,15 @@
+kind: role
+version: v5
+metadata:
+  name: contractor-admin
+spec:
+  options:
+    max_session_ttl: 24h
+  allow:
+    logins:
+     - root
+     - ubuntu
+     - ec2-user
+    node_labels:
+      '*': '*'
+

@@ -1,0 +1,22 @@
+kind: role
+version: v5
+metadata:
+  name: contractor-manager
+spec:
+  allow:
+    # `review_requests` permits the listed roles to be approved
+    review_requests:
+      roles:
+      - 'contractor-admin'
+    rules:
+    # `access_request` is part of Access Workflows introduced in 4.2
+    # `access_request` should only be given to Teleport Admins.
+    # For a full list of allow-rules, see
+    # https://goteleport.com/docs/access-controls/reference/
+    - resources:
+      - access_request
+      verbs:
+      - list
+      - read
+      - update
+      - delete

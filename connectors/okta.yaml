@@ -1,0 +1,61 @@
+kind: saml
+version: v2
+metadata:
+  # the name of the connector
+  name: gravitational-preview
+spec:
+  display: Okta
+  # SAML provider will make a callback to this URL after successful authentication
+  # cluster-url is the address the cluster UI is reachable at.
+  # The last segment of the URL must be identical to the connector metadata name.
+  acs: https://danj.teleportdemo.com/v1/webapi/saml/acs/gravitational-preview
+  # Controls whether IdP-initiated SSO is allowed. If false, all such requests will be rejected with an error.
+  allow_idp_initiated: true
+  attributes_to_roles:
+  - name: groups
+    roles:
+    - editor
+    - okta
+    - access
+    - db
+    - contractor-manager
+    - access-plugin-impersonator
+    - k8s-users
+    - aws-console-access
+    - windows-users
+    - auto-users
+    value: sales-engineers
+  # Note that the entire XML document is indented by 4 spaces. This is
+  # required because the pipe symbol indicates what follows is raw text.
+  # Below is an Example. Replace with your XML
+  entity_descriptor: |
+    <md:EntityDescriptor entityID="http://www.okta.com/exk61buvq3hx6rkM41d7" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata">
+      <md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <md:KeyDescriptor use="signing">
+          <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:X509Data>
+              <ds:X509Certificate>MIIDujCCAqKgAwIBAgIGAYRDHnNnMA0GCSqGSIb3DQEBCwUAMIGdMQswCQYDVQQGEwJVUzETMBEG
+    A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU
+    MBIGA1UECwwLU1NPUHJvdmlkZXIxHjAcBgNVBAMMFWdyYXZpdGF0aW9uYWwtcHJldmlldzEcMBoG
+    CSqGSIb3DQEJARYNaW5mb0Bva3RhLmNvbTAeFw0yMjExMDQxNDQ4MzlaFw0zMjExMDQxNDQ5Mzla
+    MIGdMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5j
+    aXNjbzENMAsGA1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxHjAcBgNVBAMMFWdyYXZp
+    dGF0aW9uYWwtcHJldmlldzEcMBoGCSqGSIb3DQEJARYNaW5mb0Bva3RhLmNvbTCCASIwDQYJKoZI
+    hvcNAQEBBQADggEPADCCAQoCggEBAJuAJ27RVP34WBfQ2osirGJ34j3it8aaBoyki6w4lliAp2kJ
+    108xqRG4oW3viiG0iXUOYN097brCdK5CB3/D73GypKkRsLn8xlefOtTNh/HOxHVGt1gZoGZFisJU
+    wd+6GTDflz6iVOAfm1weEeNL66QKHTwgpmlsk1gpi76+h4ek8rw1GjFEioYJKGw2HQZjCo2AJQyn
+    9cyiHxp4zcj3cCV6Kvc3gDDQKyY70tpXmwMbvEsDhvocC4f4wsB9gwjwBrgN/CPu8IUQaK7mQPAt
+    7JfDQzLo+Z4VM0AINhVdK8gKx80QjTp7QBOiZgLqzv4amTF8mbQZktBAPsQbDJtmoqUCAwEAATAN
+    BgkqhkiG9w0BAQsFAAOCAQEAh/twK99s9sk/x/CbTsHx93At/6OwbOb38PnU+SwMcgfMDgxSyYWh
+    qBoWYmf13q049BkAzutnfZ8n3Kn4WYw08Ywr5byMrCf1E91X8anXha4zMZpadCopsDDf5Q9lLxwL
+    gAGK4WPSmr4nz/E5GEByAC6ouXWMdnXFl2h76z43G0Psg+67C79ANqLLstAUhK7gpCmCu5mFpdRo
+    fXxlTImLZf8Grluy4BKBDbDN3PWjmbbqrgs8LLmL/JIDgGFclXaooerBmOSBixnftJoEQt8/ZyG+
+    dpV7bUljSpV06ANR9JirDcmyOXtV+uTp6O7RlkWK+MtqMdiVxEwbWFovhzvJKA==</ds:X509Certificate>
+            </ds:X509Data>
+          </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
+        <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://gravitational-preview.oktapreview.com/app/gravitational-preview_danjteleportdemocom_1/exk61buvq3hx6rkM41d7/sso/saml"/>
+        <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://gravitational-preview.oktapreview.com/app/gravitational-preview_danjteleportdemocom_1/exk61buvq3hx6rkM41d7/sso/saml"/>
+      </md:IDPSSODescriptor>
+    </md:EntityDescriptor> 

@@ -1,0 +1,10 @@
+kind: role
+version: v5
+metadata:
+  name: aws-console-access
+spec:
+  allow:
+    app_labels:
+      '*': '*'
+    aws_role_arns:
+    - arn:aws:iam::165258854585:role/ExampleReadOnlyAccess

@@ -1,0 +1,14 @@
+kind: role
+version: v4
+metadata:
+  name: windows-users
+spec:
+  options:
+    record_session:
+      desktop: true
+    create_host_user: true
+    desktop_clipboard: true
+  allow:
+    windows_desktop_logins: ["Administrator", "{{internal.windows_logins}}"]
+    windows_desktop_labels:
+      '*': '*'
